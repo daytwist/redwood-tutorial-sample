@@ -12,7 +12,7 @@ export const post = ({ id }) => {
 
 export const createPost = ({ input }) => {
   return db.post.create({
-    data: input,
+    data: { ...input, userId: context.currentUser.id },
   })
 }
 

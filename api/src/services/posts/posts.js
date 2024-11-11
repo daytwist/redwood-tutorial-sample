@@ -1,12 +1,12 @@
 import { db } from 'src/lib/db'
 
 export const posts = () => {
-  return db.post.findMany()
+  return db.post.findMany({ where: { userId: context.currentUser.id } })
 }
 
 export const post = ({ id }) => {
-  return db.post.findUnique({
-    where: { id },
+  return db.post.findFirst({
+    where: { id, userId: context.currentUser.id },
   })
 }
 
